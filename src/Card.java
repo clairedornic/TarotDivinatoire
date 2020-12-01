@@ -60,13 +60,4 @@ public class Card {
         return "The " + this.name + " " + this.id + " a comme description " + this.desc;
 		
     }
-
-    //Method delete a card
-    
-    //Method add a card ?
-
-    //Method add an image 
-
-
-
 }
