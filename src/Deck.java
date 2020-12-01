@@ -3,28 +3,17 @@ import java.util.ArrayList;
 //import sun.security.util.Length;
 
 public class Deck {
-    ArrayList<Card> cardDeck = new ArrayList<Card>();
+    ArrayList<Card> cardDeck;
 
     public Deck() {
-		for (int n = 0; n < Card.names.length; n++) {
-            String name = Card.names[n];
-            int id = Card.theId[n];
-            String desc = Card.descs[n];
-            cardDeck.add(new Card(name, id, desc));   	 
-		}
-        //System.out.println(cardDeck.toString());  //Vérification
+        cardDeck = new ArrayList<Card>();
     } 
 
     public void showDeck() {
-        System.out.println("The deck is made up of " + this.cardDeck.size() + " cards :");
-        for(int i = 0; i < this.cardDeck.size(); i++) {
-            System.out.println(Card.names[i] + " numéro " + Card.theId[i] + " a pour description : " + Card.descs[i]);
-        }
+        for (Card card : cardDeck) {
+            System.out.println(card.toString());
+	    }
     }
-
-    // public void showDeck() {
-    //     System.out.println(this.cardDeck.toString());
-    // }
 
     public void addCardToDeck(Card aCard) {
         this.cardDeck.add(aCard);
@@ -34,8 +23,14 @@ public class Deck {
         this.cardDeck.add(new Card(name, id, desc)); 
     }
 
-   
-
+    public boolean deleteCard(int id) {
+        for (Card card : cardDeck) {
+            if (card.getIdCard(card) == id) 
+            return cardDeck.remove(card);
+        }		
+        return false;
+    }
+    
     @Override 
          public String toString()
          {

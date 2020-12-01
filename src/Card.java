@@ -6,13 +6,6 @@ public class Card {
     private String name;
     private int id;
     private String desc;
-    public static String[] names = { "Bateleur", "Papesse", "Impératrice", "Empereur", "Pape", "Amoureux",
-            "Chariot", "Justice", "Hermite", "Roue de fortune", "Force", "Pendu", "Arcane sans nom", "Tempérance",
-            "Diable", "Maison dieu", "Étoile", "Lune", "Soleil", "Jugement", "Monde", "Mat" };
-    public static int[] theId = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 };
-    public static String[] descs = { "desc1", "desc2", "desc3", "desc4", "desc5", "desc6", "desc7", "desc8",
-            "desc9", "desc10", "desc11", "desc12", "desc13", "desc14", "desc15", "desc16", "desc17", "desc18", "desc19",
-            "desc20", "desc21", "desc22"};
     
     // private Image cardImg;
 
@@ -38,9 +31,33 @@ public class Card {
         this.desc = desc;
     }
 
+    public int getIdCard(Card aCard) {
+        return this.id = aCard.id;
+    }
+
+    public String getNameCard() {
+        return name;
+    }
+
+    public String getDescCard() {
+        return desc;
+    }
+    
+    public void changeName(String newName) {
+       this.name = newName;
+    }
+
+    public void changeId(int id) {
+        this.id = id;
+    }
+
+    public void changeDesc(String desc) {
+        this.desc = desc;
+    }
+
     @Override
     public String toString() {
-        return "The " + this.name + this.id + " a comme description " + this.desc;
+        return "The " + this.name + " " + this.id + " a comme description " + this.desc;
 		
     }
 

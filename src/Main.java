@@ -6,6 +6,15 @@ public class Main {
     String choiceName;
     int choiceId;
     String choiceDescription;
+    final String[] names = { "Bateleur", "Papesse", "Impératrice", "Empereur", "Pape", "Amoureux",
+            "Chariot", "Justice", "Hermite", "Roue de fortune", "Force", "Pendu", "Arcane sans nom", "Tempérance",
+            "Diable", "Maison dieu", "Étoile", "Lune", "Soleil", "Jugement", "Monde", "Mat" };
+    int[] theId = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 };
+    String[] descs = { "desc1", "desc2", "desc3", "desc4", "desc5", "desc6", "desc7", "desc8",
+            "desc9", "desc10", "desc11", "desc12", "desc13", "desc14", "desc15", "desc16", "desc17", "desc18", "desc19",
+            "desc20", "desc21", "desc22"};
+    int choiceIdCard = 0;
+    boolean idValid = false;
     Deck deckUser = new Deck();
 
     //Menu
@@ -14,33 +23,41 @@ public class Main {
 
     do {
         System.out.println("Here are your different options");
-        System.out.println("1) Read the cards");
+        System.out.println("1) Add classics cards to your deck");
         System.out.println("2) Add a new card");
         System.out.println("3) Add a description to a new card");
-        System.out.println("4) Add a new card with its name, its id and its description");
+        System.out.println("4) Read the cards");
         System.out.println("5) Modify a card");
         System.out.println("6) Search in to a deck of cards");
+        System.out.println("7) Delete a card");
         System.out.println("0) Enter 0 to exit the menu");
         choice = scanner.nextInt();
 
-        if (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5) {
+        if (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5 && choice != 6 && choice != 7) {
           System.out.println(" || You must choose a number in the list");
         } else {
           switch (choice) {
             case 0:
                 break;
             case 1:
-                System.out.println("<-------- Reading the deck -------->");
-                try {
-                  deckUser.showDeck();
-                } catch (Exception e) {
-                  System.out.println(e);
-                } 
+              for (int n = 0; n < names.length; n++) {
+                String name = names[n];
+                int id = theId[n];
+                String desc = descs[n];
+                deckUser.addCompleteCardToDeck(name, id, desc);   	 
+              } 
               break;
             case 2:
-              Card aNewCard = new Card();
+                System.out.println("Insert the name of your new card");
+                choiceName = scanner.next();
+                //Create a test for the id and the name;
+                System.out.println("Insert the id of your new card");
+                choiceId = scanner.nextInt();
+                Card newCard = new Card(choiceName, choiceId);
+                
               try {
-                deckUser.addCardToDeck(aNewCard);
+                deckUser.addCardToDeck(newCard);
+                System.out.println("<--- Here is you new deck --->");
                 deckUser.showDeck();
               } catch (Exception e) {
                 System.out.println(e);
@@ -48,31 +65,153 @@ public class Main {
               
               break;
             case 3:
-                System.out.println("Insert the description of your new card");
-                choiceDescription = scanner.next();
-                Card aNewCard2 = new Card(choiceDescription);
-                deckUser.addCardToDeck(aNewCard2);
+            //Create a test for the id and the name;
+              System.out.println("Insert the name of your new card");
+              choiceName = scanner.next();
+              System.out.println("Insert the id of your new card");
+              choiceId = scanner.nextInt();
+              System.out.println("Insert the description of your new card");
+              choiceDescription = scanner.next();
+              Card newCard2 = new Card(choiceName, choiceId, choiceDescription);
+              try {
+                deckUser.addCardToDeck(newCard2);
+                System.out.println("<--- Here is you new deck --->");
+                deckUser.showDeck();
+              } catch (Exception e) {
+                System.out.println(e);
+              }
               break;
             case 4:
-                System.out.println("Insert the name of your new card");
-                choiceName = scanner.next();
-                System.out.println("Insert the id of your new card");
-                choiceId = scanner.nextInt();
-                System.out.println("Insert the description of your new card");
-                choiceDescription = scanner.next();
-                // Card aNewCard3 = new Card(choiceName, choiceId, choiceDescription);
-                deckUser.addCompleteCardToDeck(choiceName, choiceId, choiceDescription);
+              System.out.println("<-------- Reading the deck -------->");
+              try {
+                deckUser.showDeck();
+              } catch (Exception e) {
+                System.out.println(e);
+              }  
               break;
-            case 5: //Not working 
+            case 5:
+              Card matchedCard = null;
+              do {
+              System.out.println("What card do you want to modify in this deck, insert the id of it");
+              choiceIdCard = scanner.nextInt();
+              
+              // while (idValid == false) {
+                for (Card card : deckUser.cardDeck) {
+                  int idCard = card.getIdCard(card);
+                  if (idCard == choiceIdCard) {
+                    idValid = true;
+                    matchedCard = card;
+                    update(deckUser, card);
+                    break;
+                  } else {
+                    idValid = false;
+                  }
+                }	
+                if(matchedCard != null) {
+                } else {
+                  System.out.println("Id invalid, please try with an another id present in the list behind");
+                  deckUser.showDeck();
+                }
+              // }
+            } while (matchedCard == null);
+              
+              break;
+            case 6: 
+              break;
+            case 7: 
+            System.out.println("Insert the id of the card you want to delete");
+            int idchoiceUser = scanner.nextInt();
+
+            deckUser.deleteCard(idchoiceUser);
+              break;
           }
         }
-      } while (choice != 0); 
-
-        // String name = "Test";
-        // int id = 23;
-        // String desc = "Desc23";
-        // Card testCard = new Card(name, id, desc); 
-        // System.out.println(testCard.toString());
-        
+      } while (choice != 0);     
     }
+
+    public static void update(Deck deckUser, Card theCard) {
+      String choiceNewName = "";
+      int choiceNewId = 0;
+      String choiceNewDesc = "";
+      boolean nameValid = false;
+      boolean idValid = false;
+      Card matchedCardName = null;
+      Card matchedCardId = null;
+
+      int choiceCharacteristic;
+
+      do {
+      Scanner scanner2 = new Scanner(System.in);
+      System.out.println("What do you want to modify in this card, choose a number in the list");
+      System.out.println("1) The card name");
+      System.out.println("2) The card id");
+      System.out.println("3) The card description");
+      System.out.println("0) Come back to the main menu");
+      choiceCharacteristic = scanner2.nextInt();
+
+      if (choiceCharacteristic != 1 && choiceCharacteristic != 2 && choiceCharacteristic != 3 && choiceCharacteristic != 0) {
+        System.out.println(" || You must choose a number in the list");
+      } else {
+       switch (choiceCharacteristic) {
+          case 0:
+              break; 
+          case 1:
+            do {
+              System.out.println("What name do you want to give to your card ?");
+              choiceNewName = scanner2.next();
+              for (Card card : deckUser.cardDeck) {
+                if (card.getNameCard().equalsIgnoreCase(choiceNewName)) {
+                  nameValid = false;
+                  matchedCardName = card;
+                } else {
+                  nameValid = true;
+                }
+              }	
+              if(matchedCardName != null) {
+                System.out.println("Name already taken, choose an another name, except those from the list behind ");
+                deckUser.showDeck();
+              } else {
+              System.out.println("Name valid");
+              }
+            }while(matchedCardName != null);
+
+            if(nameValid == true) {
+              theCard.changeName(choiceNewName);
+            }
+
+          break;
+        case 2:
+          do {
+            System.out.println("What id do you want to give to your card ?");
+            choiceNewId = scanner2.nextInt();
+            for (Card card : deckUser.cardDeck) {
+              if (card.getIdCard(card) == choiceNewId) {
+                idValid = false;
+                matchedCardId = card;
+              } else {
+                idValid = true;
+              }
+            }	
+            if(matchedCardId != null) {
+              System.out.println("Id already taken, choose an another id, except those from the list behind ");
+              deckUser.showDeck();
+            } else {
+            System.out.println("Id valid");
+            }
+          }while(matchedCardId != null);
+
+          if(idValid == true) {
+            theCard.changeId(choiceNewId);
+          }
+            break;
+        case 3:
+          System.out.println("What description do you want to give to your card ?");
+          choiceNewDesc = scanner2.next();
+          theCard.changeDesc(choiceNewDesc);
+    
+          break;
+        } 
+      }
+    }while (choiceCharacteristic != 0);
+  }
 }
