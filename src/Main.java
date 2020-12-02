@@ -5,16 +5,24 @@ public class Main {
     int choice;
     String choiceName;
     int choiceId;
+    String choiceImgPath;
     String choiceDescription;
     final String[] names = { "Bateleur", "Papesse", "Impératrice", "Empereur", "Pape", "Amoureux",
             "Chariot", "Justice", "Hermite", "Roue de fortune", "Force", "Pendu", "Arcane sans nom", "Tempérance",
             "Diable", "Maison dieu", "Étoile", "Lune", "Soleil", "Jugement", "Monde", "Mat" };
-    int[] theId = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 };
-    String[] descs = { "desc1", "desc2", "desc3", "desc4", "desc5", "desc6", "desc7", "desc8",
+    final int[] theId = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 };
+    final String[] descs = { "desc1", "desc2", "desc3", "desc4", "desc5", "desc6", "desc7", "desc8",
             "desc9", "desc10", "desc11", "desc12", "desc13", "desc14", "desc15", "desc16", "desc17", "desc18", "desc19",
             "desc20", "desc21", "desc22"};
+    final String[] pathsImg = { "path1", "path2", "path3", "path4", "path5", "path6", "path7", "path8",
+            "path9", "path10", "path11", "path12", "path13", "path14", "path15", "path16", "path17", "path18", "path19",
+            "path20", "path21", "path22"};
+    
     int choiceIdCard = 0;
     boolean idValid = false;
+    boolean nameValid = false;
+    int searchChoice = 0;
+    Card matchedCard = null;
     Deck deckUser = new Deck();
 
     //Menu
@@ -28,8 +36,9 @@ public class Main {
         System.out.println("3) Add a description to a new card");
         System.out.println("4) Read the cards");
         System.out.println("5) Modify a card");
-        System.out.println("6) Search in to a deck of cards");
-        System.out.println("7) Delete a card");
+        System.out.println("6) Search into the deck of cards");
+        System.out.println("7) Add an image to your card");
+        System.out.println("8) Delete a card");
         System.out.println("0) Enter 0 to exit the menu");
         choice = scanner.nextInt();
 
@@ -44,7 +53,8 @@ public class Main {
                 String name = names[n];
                 int id = theId[n];
                 String desc = descs[n];
-                deckUser.addCompleteCardToDeck(name, id, desc);   	 
+                String pathImg = pathsImg[n];
+                deckUser.addCompleteCardToDeck(name, id, desc, pathImg);   	 
               } 
               break;
             case 2:
@@ -53,6 +63,7 @@ public class Main {
                 //Create a test for the id and the name;
                 System.out.println("Insert the id of your new card");
                 choiceId = scanner.nextInt();
+
                 Card newCard = new Card(choiceName, choiceId);
                 
               try {
@@ -72,7 +83,9 @@ public class Main {
               choiceId = scanner.nextInt();
               System.out.println("Insert the description of your new card");
               choiceDescription = scanner.next();
-              Card newCard2 = new Card(choiceName, choiceId, choiceDescription);
+              System.out.println("Insert the image path of your new card");
+              choiceImgPath = scanner.next();
+              Card newCard2 = new Card(choiceName, choiceId, choiceDescription, choiceImgPath);
               try {
                 deckUser.addCardToDeck(newCard2);
                 System.out.println("<--- Here is you new deck --->");
@@ -90,7 +103,6 @@ public class Main {
               }  
               break;
             case 5:
-              Card matchedCard = null;
               do {
               System.out.println("What card do you want to modify in this deck, insert the id of it");
               choiceIdCard = scanner.nextInt();
@@ -117,8 +129,48 @@ public class Main {
               
               break;
             case 6: 
+
+            do {
+              System.out.println("Search card by (choose a number in the list behind) :");
+              System.out.println("1) Id of the card");
+	            System.out.println("2) Name of the card");
+	            searchChoice = scanner.nextInt();
+            } while (searchChoice != 1 && searchChoice !=2);
+            
+            if (searchChoice == 1) {
+              deckUser.searchById();
+            } else {
+              deckUser.searchByName();
+            }
+
               break;
             case 7: 
+            do {
+              System.out.println("To what card do you want to add an image, insert its id ?");
+              int idchoiceUser = scanner.nextInt();
+            
+                for (Card card : deckUser.cardDeck) {
+                  int idCard = card.getIdCard(card);
+                  if (idCard == idchoiceUser) {
+                    idValid = true;
+                    matchedCard = card;
+                    matchedCard.addImg();
+                    break;
+                  } else {
+                    idValid = false;
+                  }
+                }	
+                if(matchedCard != null) {
+                } else {
+                  System.out.println("Id invalid, please try with an another id present in the list behind");
+                  deckUser.showDeck();
+                }
+            } while (matchedCard == null);
+           
+  
+
+                break;
+            case 8: 
             System.out.println("Insert the id of the card you want to delete");
             int idchoiceUser = scanner.nextInt();
 
