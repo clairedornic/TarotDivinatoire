@@ -1,12 +1,17 @@
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
-public class Card {
+public class Card implements Serializable {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 2L;
     private String name;
     private int id;
     private String desc;

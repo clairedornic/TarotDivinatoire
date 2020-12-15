@@ -1,25 +1,54 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 //import sun.security.util.Length;
 
-public class Deck {
-    ArrayList<Card> cardDeck;
+public class Deck implements Serializable {
+    /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
+  ArrayList<Card> cardDeck;
 
     public Deck() {
-        cardDeck = new ArrayList<Card>();
+      cardDeck = new ArrayList<Card>();
     } 
-
+       
+	 /** 
+	  * Display all the cards or the deck
+	  *
+	  */
     public void showDeck() {
         for (Card card : cardDeck) {
             System.out.println(card.toString());
 	    }
     }
 
+    
+	 /** 
+	  * Add the card pass as a parameter in the deck
+	  *  
+	  * @param aCard
+	  *
+	  */
     public void addCardToDeck(Card aCard) {
         this.cardDeck.add(aCard);
     }
 
+    
+	 /** 
+	  * Permet de comparer la carte courante à celle passé en paramètre
+	  * Les deux premières comparaisons servent à gérer le cas de "l'As" 
+	  *  
+	  * @return      int
+	  * @param       autreCarte
+	  *
+	  */
     public void addCompleteCardToDeck(String name, int id, String desc, String imgPath) {
         this.cardDeck.add(new Card(name, id, desc, imgPath)); 
     }
