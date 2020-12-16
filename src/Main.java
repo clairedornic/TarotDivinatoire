@@ -1,18 +1,12 @@
-import java.awt.Dimension;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import gameInterface.Window;
 
-import gameInterface.Menu;
 
 import java.io.ObjectOutputStream;
 
@@ -43,17 +37,9 @@ public class Main {
     Deck deckUser = new Deck();
     Deck oldDeckUser = null;
 
-    //Window
-    JFrame window = new JFrame("Mystic Tarot");
-    window.setSize(1300, 700);
-    window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    window.setLocationRelativeTo(null);
-    Menu menu = new Menu();
-
-    window.getContentPane().add(menu);   
-    window.validate();
-		window.setVisible(true);
-
+    Window game = new Window(); 
+    game.validate();
+		game.setVisible(true);
 
     File file = new File("DeckTest");
     if (file.length() == 0) {
