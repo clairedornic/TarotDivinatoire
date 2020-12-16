@@ -5,11 +5,12 @@ import javax.swing.JFrame;
 public class Window extends JFrame {
     
     private static final long serialVersionUID = 3L;
-    Menu menu;
+    WelcomePanel welcome;
 
     public Window() {
         super();
         windowProperties();
+        windowComponents();
     }
 
     private void windowProperties() {
@@ -18,7 +19,18 @@ public class Window extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null); 
         this.setAlwaysOnTop(true);
-        menu = new Menu();
-        this.add(menu);
     }
+
+    private void windowComponents() {
+        welcome = new WelcomePanel();
+        this.add(welcome);
+        Menu menuBar = new Menu();                
+        setJMenuBar(menuBar);            
+        pack();
+        setVisible(true);
+    }
+
+    public java.awt.Container getCurrentContainer() {
+        return this.getContentPane();
+      }
 }

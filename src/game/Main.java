@@ -1,3 +1,5 @@
+package game;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,6 +14,9 @@ import java.io.ObjectOutputStream;
 
 
 public class Main {
+
+  public static Window game = null;
+
   public static void main(String[] args) throws Exception {
     int choice;
     String choiceName;
@@ -37,7 +42,7 @@ public class Main {
     Deck deckUser = new Deck();
     Deck oldDeckUser = null;
 
-    Window game = new Window(); 
+    game = new Window();
     game.validate();
 		game.setVisible(true);
 

@@ -1,67 +1,114 @@
 package gameInterface;
 
+import game.Main;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
+import java.awt.Color;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import  java.awt.event.*;
 
-public class Menu extends JPanel {
+public class Menu extends JMenuBar implements ActionListener {
 
-    private static final long serialVersionUID = 3L;
-    JLabel label;
-    JLabel space;
-    JLabel choice1;
-    JLabel space2;
-    JButton classicCards;
-    JLabel space3;
-    JButton addCard;
+    private static final long serialVersionUID = 4L;
+    JMenu menuBar;
+    JMenuItem home, addClassicCards, addCard, readCards, modifyCard, searchCard, deleteCard, exitGame;
 
     public Menu(){
         super();
-        this.menuElements();
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.setBorder(BorderFactory.createEmptyBorder(150,200,150,200));
+        menuBar = new JMenu("Menu");
+        menuBar.setLayout(new BoxLayout(menuBar, BoxLayout.PAGE_AXIS));
+        menuBar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+        menuElements();
+        this.add(menuBar);
         this.setVisible(true);
     }
 
     private void menuElements() {
-        
-        label = new JLabel("Welcome, let's play to Mystic Tarot");
-        space = new JLabel("                                              ");
-        choice1 = new JLabel("First, what do you want to do ?");
-        space2 = new JLabel("                                              ");
-        classicCards = new JButton("Add classics cards to your deck");
-        space3 = new JLabel("                                              ");
-        addCard = new JButton("Add a card");
+        home = new JMenuItem("Back to home page");
+        addClassicCards = new JMenuItem("Add classic cards");
+        addCard = new JMenuItem("Add cards");
+        readCards = new JMenuItem("See my cards");
+        modifyCard = new JMenuItem("Modify a card");
+        searchCard = new JMenuItem("Search a card");
+        deleteCard = new JMenuItem("Delete a card");
+        exitGame = new JMenuItem("Exit the game");
 
-        label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-        label.setAlignmentY(JLabel.CENTER_ALIGNMENT);
-        space.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-        space.setAlignmentY(JLabel.CENTER_ALIGNMENT);
-        choice1.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-        choice1.setAlignmentY(JLabel.CENTER_ALIGNMENT);
-        classicCards.setAlignmentX(JButton.CENTER_ALIGNMENT);
-        classicCards.setAlignmentY(JButton.CENTER_ALIGNMENT);
-        addCard.setAlignmentX(JButton.CENTER_ALIGNMENT);
-        addCard.setAlignmentY(JButton.CENTER_ALIGNMENT);
+        home.addActionListener(this);
+        addClassicCards.addActionListener(this);
+        addCard.addActionListener(this);
+        readCards.addActionListener(this);
+        modifyCard.addActionListener(this);
+        searchCard.addActionListener(this);
+        deleteCard.addActionListener(this);
+        exitGame.addActionListener(this);
 
-        this.add(label);
-        this.add(space);
-        this.add(choice1);
-        this.add(space2);
-        this.add(classicCards);
-        this.add(space3);
+
+        this.add(home);
+        this.add(addClassicCards);
         this.add(addCard);
-
-        classicCards.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //your actions
-            }
-        });
+        this.add(readCards);
+        this.add(modifyCard);
+        this.add(searchCard);
+        this.add(deleteCard);
+        this.add(exitGame);
     }
+
+
+
+    @Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == home) {
+			JPanel panel = new WelcomePanel();
+			displayNewPanel(panel);
+        } 
+        else if(e.getSource() == addClassicCards) {
+			JPanel panel = new addClassicCardsPanel();
+			displayNewPanel(panel);
+		}
+        else if(e.getSource() == addCard) {
+			JPanel panel = new AddCardPanel();
+			displayNewPanel(panel);
+		}
+		else if(e.getSource() == readCards) {
+			// deck.generateCard();
+			// JOptionPane.showMessageDialog(Main.window, "Un deck de carte a été généré.");
+			JPanel panel = new ReadCardsPanel();
+			displayNewPanel(panel);
+		}
+		else if(e.getSource() == modifyCard) {
+			
+			JPanel panel = new ModifyCard();
+			displayNewPanel(panel);
+		}
+		else if(e.getSource() == searchCard) {
+			JPanel panel = new SearchCardPanel();
+			displayNewPanel(panel);
+        }
+        else if(e.getSource() == deleteCard) {
+			JPanel panel = new DeleteCardPanel();
+			displayNewPanel(panel);
+        }
+        else if(e.getSource() == exitGame) {
+			// JPanel panel = new ReadFuturePanel(deck);
+			// displayNewPanel(panel);
+		} else {
+            JPanel panel = new WelcomePanel();
+            displayNewPanel(panel);
+        }
+    }
+    
+    private void displayNewPanel(JPanel panel) {
+        Main.game.getContentPane().removeAll();
+	    Main.game.getContentPane().add(panel);
+	    Main.game.getContentPane().invalidate();
+	    Main.game.getContentPane().validate();
+        Main.game.getContentPane().repaint();
+	}
 }

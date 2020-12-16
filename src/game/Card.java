@@ -1,3 +1,5 @@
+package game;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +30,12 @@ public class Card implements Serializable {
     public Card(String name, int id) {
         this.name = name;
         this.id = id;
+    }
+
+    public Card(String name, int id, String desc) {
+        this.name = name;
+        this.id = id;
+        this.desc = desc;
     }
 
     public Card(String name, int id, String desc, String imgPath) {

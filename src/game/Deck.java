@@ -1,3 +1,5 @@
+package game;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -113,6 +115,15 @@ public class Deck implements Serializable {
           } while (matchedCard == null);
           System.out.println("Here is the card you were looking for : " + matchedCard);
           return matchedCard;
+    }
+
+    public boolean isEmpty() {
+
+      if(this.cardDeck.size() > 0) {
+        return false;
+      } else {
+        return true;
+      }
     }
     
     @Override 
