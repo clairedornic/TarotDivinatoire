@@ -1,5 +1,6 @@
 package gameInterface;
 
+import game.Deck;
 import game.Main;
 
 import java.awt.event.ActionEvent;
@@ -19,7 +20,8 @@ public class Menu extends JMenuBar implements ActionListener {
     private static final long serialVersionUID = 4L;
     JMenu menuBar;
     JMenuItem home, addClassicCards, addCard, readCards, modifyCard, searchCard, deleteCard, exitGame;
-
+    Deck deckUser = new Deck();
+    
     public Menu(){
         super();
         menuBar = new JMenu("Menu");
@@ -69,17 +71,15 @@ public class Menu extends JMenuBar implements ActionListener {
 			displayNewPanel(panel);
         } 
         else if(e.getSource() == addClassicCards) {
-			JPanel panel = new addClassicCardsPanel();
+			JPanel panel = new addClassicCardsPanel(deckUser);
 			displayNewPanel(panel);
 		}
         else if(e.getSource() == addCard) {
-			JPanel panel = new AddCardPanel();
+			JPanel panel = new AddCardPanel(deckUser);
 			displayNewPanel(panel);
 		}
 		else if(e.getSource() == readCards) {
-			// deck.generateCard();
-			// JOptionPane.showMessageDialog(Main.window, "Un deck de carte a été généré.");
-			JPanel panel = new ReadCardsPanel();
+			JPanel panel = new ReadCardsPanel(deckUser);
 			displayNewPanel(panel);
 		}
 		else if(e.getSource() == modifyCard) {

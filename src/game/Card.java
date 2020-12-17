@@ -57,6 +57,10 @@ public class Card implements Serializable {
         return desc;
     }
 
+    public String getImgCard() {
+        return imagePath;
+    }
+
     public void changeName(String newName) {
         this.name = newName;
     }

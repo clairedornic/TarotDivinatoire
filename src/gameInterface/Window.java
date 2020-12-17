@@ -1,5 +1,7 @@
 package gameInterface;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 
 public class Window extends JFrame {
@@ -14,10 +16,10 @@ public class Window extends JFrame {
     }
 
     private void windowProperties() {
-        this.setSize(1300, 700);
+        this.setPreferredSize(new Dimension(1300, 700));
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null); 
+        // this.setLocationRelativeTo(null); 
         this.setAlwaysOnTop(true);
     }
 

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;  
 
 import game.Card;
+import game.Deck;
 
 public class AddCardPanel extends JPanel implements ActionListener{
 
@@ -18,23 +19,17 @@ public class AddCardPanel extends JPanel implements ActionListener{
     JTextArea desc;
     JLabel descLabel;
     JScrollPane scrollArea;
+    Deck userDeck;
 
-	public AddCardPanel() {
+	public AddCardPanel(Deck deckUser) {
         panelElements();
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBorder(BorderFactory.createEmptyBorder(150,200,150,150));
         this.setVisible(true);
-
+        this.userDeck = deckUser;
     }
 
     private void panelElements() {
-
-        // System.out.println("Insert the name of your new card");
-        // choiceName = scanner.next();
-        // // Create a test for the id and the name;
-        // System.out.println("Insert the id of your new card");
-        // choiceId = scanner.nextInt();
-
 
         nameLabel = new JLabel("Name");
         name = new JTextField(30);
@@ -70,5 +65,13 @@ public class AddCardPanel extends JPanel implements ActionListener{
         int idCardInt = Integer.parseInt(idCard);  
         String descCard = desc.getText();   
         Card newCard = new Card(nameCard, idCardInt, descCard);
+
+        try {
+            userDeck.addCardToDeck(newCard);
+            System.out.println("<--- Here is you new deck --->");
+            userDeck.showDeck();
+          } catch (Exception ex) {
+            System.out.println(ex);
+          }
     }
 }

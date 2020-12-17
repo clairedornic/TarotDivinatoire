@@ -7,9 +7,7 @@ import java.util.Scanner;
 //import sun.security.util.Length;
 
 public class Deck implements Serializable {
-    /**
-   *
-   */
+
   private static final long serialVersionUID = 1L;
   ArrayList<Card> cardDeck;
 
@@ -124,6 +122,10 @@ public class Deck implements Serializable {
       } else {
         return true;
       }
+    }
+
+    public ArrayList<Card> getDeckArrayList() {
+      return cardDeck;
     }
     
     @Override 
