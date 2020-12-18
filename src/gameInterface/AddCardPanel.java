@@ -3,7 +3,10 @@ package gameInterface;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;  
+import javax.swing.*; 
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.imageio.ImageIO;
+// import javax.swing.border.EmptyBorder;
 
 import game.Card;
 import game.Deck;
@@ -16,10 +19,15 @@ public class AddCardPanel extends JPanel implements ActionListener{
     JLabel nameLabel;
     JTextField id;
     JLabel idLabel;
+    JButton img;
+    JLabel imgLabel;
+    JLabel imgLabel2;
     JTextArea desc;
     JLabel descLabel;
     JScrollPane scrollArea;
     Deck userDeck;
+    JLabel addedCard;
+    String pathImgchoix;
 
 	public AddCardPanel(Deck deckUser) {
         panelElements();
@@ -32,46 +40,82 @@ public class AddCardPanel extends JPanel implements ActionListener{
     private void panelElements() {
 
         nameLabel = new JLabel("Name");
-        name = new JTextField(30);
-        nameLabel.setBounds(65, 31, 0, 0);
-        name.setBounds(50,100, 200,30); 
+        name = new JTextField(5);
+        // name.setBorder(new EmptyBorder(2, 10, 10, 10));
 
         idLabel = new JLabel("Id");
-        id = new JTextField(30);
-        id.setBounds(50,100, 200,30);
+        id = new JTextField();
+
+        imgLabel = new JLabel("Click here to choose the card image :");
+        imgLabel2 = new JLabel("");
+        img = new JButton("Pick an image on your computer");
+        img.addActionListener(this);
 
         descLabel = new JLabel("Description");
-        desc = new JTextArea(5, 25);
+        desc = new JTextArea(5, 10);
         scrollArea = new JScrollPane(desc);
 
         save = new JButton("Save your card");
         save.addActionListener(this);
 
+        addedCard = new JLabel("");
 
         this.add(nameLabel);
         this.add(name);
         this.add(idLabel);
         this.add(id);
+        this.add(imgLabel);
+        this.add(imgLabel2);
+        this.add(img);
         this.add(descLabel);
         this.add(scrollArea);
         this.add(save);
+        this.add(addedCard);
+
     }
 
     @Override
 	public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == save) {
+            String nameCard = name.getText(); 
+            String idCard = id.getText();
+            int idCardInt = Integer.parseInt(idCard);  
+            String descCard = desc.getText();   
+            Card newCard = new Card(nameCard, idCardInt, descCard, pathImgchoix);
+    
+            try {
+                userDeck.addCardToDeck(newCard);
+                addedCard.setText("Card has been added to the deck!");
+              } catch (Exception ex) {
+                System.out.println(ex);
+            }
 
-        String nameCard = name.getText(); 
-        String idCard = id.getText();
-        int idCardInt = Integer.parseInt(idCard);  
-        String descCard = desc.getText();   
-        Card newCard = new Card(nameCard, idCardInt, descCard);
+        } else if (e.getSource() == img){
+            System.out.println("YES");
+            JFileChooser choice = new JFileChooser();
+            choice.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            choice.setMultiSelectionEnabled(false);
 
-        try {
-            userDeck.addCardToDeck(newCard);
-            System.out.println("<--- Here is you new deck --->");
-            userDeck.showDeck();
-          } catch (Exception ex) {
-            System.out.println(ex);
-          }
+            //Setting Up The Filter
+            FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
+
+            //Attaching Filter to JFileChooser object
+            choice.setFileFilter(imageFilter);
+
+            JDialog dialog = new JDialog();  
+            int feedback = choice.showOpenDialog(this);
+            if(feedback == JFileChooser.APPROVE_OPTION){
+                 // nom du fichier  choisi 
+                imgLabel2.setText(choice.getSelectedFile().getName());
+                // absolute path of the chosen file
+                pathImgchoix = choice.getSelectedFile().getAbsolutePath();
+            }else {
+                System.out.println("NOP");
+            } 
+        }
     }
 }
+
+
+
+
