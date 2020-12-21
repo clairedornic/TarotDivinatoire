@@ -51,7 +51,7 @@ public class Deck implements Serializable {
 
     public boolean deleteCard(int id) {
         for (Card card : cardDeck) {
-            if (card.getIdCard(card) == id) 
+            if (card.setIdCard(card) == id) 
             return cardDeck.remove(card);
         }		
         return false;
@@ -67,7 +67,7 @@ public class Deck implements Serializable {
             int searchIdChoice = scanner.nextInt();
 
               for (Card card : this.cardDeck) {
-                int idCard = card.getIdCard(card);
+                int idCard = card.setIdCard(card);
                 if (idCard == searchIdChoice) {
                   idValid = true;
                   matchedCard = card;

@@ -45,8 +45,12 @@ public class Card implements Serializable {
         this.imagePath = imgPath;
     }
 
-    public int getIdCard(Card aCard) {
+    public int setIdCard(Card aCard) {
         return this.id = aCard.id;
+    }
+
+    public int getIdCard() {
+        return id;
     }
 
     public String getNameCard() {

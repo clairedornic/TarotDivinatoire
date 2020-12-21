@@ -162,7 +162,7 @@ public class Main {
 
               // while (idValid == false) {
               for (Card card : deckUser.cardDeck) {
-                int idCard = card.getIdCard(card);
+                int idCard = card.setIdCard(card);
                 if (idCard == choiceIdCard) {
                   idValid = true;
                   matchedCard = card;
@@ -203,7 +203,7 @@ public class Main {
               int idchoiceUser = scanner.nextInt();
 
               for (Card card : deckUser.cardDeck) {
-                int idCard = card.getIdCard(card);
+                int idCard = card.setIdCard(card);
                 if (idCard == idchoiceUser) {
                   idValid = true;
                   matchedCard = card;
@@ -289,7 +289,7 @@ public class Main {
               System.out.println("What id do you want to give to your card ?");
               choiceNewId = scanner2.nextInt();
               for (Card card : deckUser.cardDeck) {
-                if (card.getIdCard(card) == choiceNewId) {
+                if (card.setIdCard(card) == choiceNewId) {
                   idValid = false;
                   matchedCardId = card;
                 } else {

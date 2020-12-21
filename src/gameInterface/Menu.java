@@ -21,6 +21,8 @@ public class Menu extends JMenuBar implements ActionListener {
     JMenu menuBar;
     JMenuItem home, addClassicCards, addCard, readCards, modifyCard, searchCard, deleteCard, exitGame;
     Deck deckUser = new Deck();
+    String introText;
+    Boolean check;
     
     public Menu(){
         super();
@@ -40,7 +42,6 @@ public class Menu extends JMenuBar implements ActionListener {
         modifyCard = new JMenuItem("Modify a card");
         searchCard = new JMenuItem("Search a card");
         deleteCard = new JMenuItem("Delete a card");
-        exitGame = new JMenuItem("Exit the game");
 
         home.addActionListener(this);
         addClassicCards.addActionListener(this);
@@ -49,8 +50,6 @@ public class Menu extends JMenuBar implements ActionListener {
         modifyCard.addActionListener(this);
         searchCard.addActionListener(this);
         deleteCard.addActionListener(this);
-        exitGame.addActionListener(this);
-
 
         this.add(home);
         this.add(addClassicCards);
@@ -59,7 +58,6 @@ public class Menu extends JMenuBar implements ActionListener {
         this.add(modifyCard);
         this.add(searchCard);
         this.add(deleteCard);
-        this.add(exitGame);
     }
 
 
@@ -88,17 +86,18 @@ public class Menu extends JMenuBar implements ActionListener {
 			displayNewPanel(panel);
 		}
 		else if(e.getSource() == searchCard) {
-			JPanel panel = new SearchCardPanel();
+            introText = "Insert here the name of the card you are looking for in your deck!";
+            check = false;
+			JPanel panel = new SearchOrDeleteCardPanel(deckUser, introText, check);
 			displayNewPanel(panel);
         }
         else if(e.getSource() == deleteCard) {
-			JPanel panel = new DeleteCardPanel();
+            introText = "Insert here the name of the card you want to delete!";
+            check = true;
+			JPanel panel = new SearchOrDeleteCardPanel(deckUser, introText, check);
 			displayNewPanel(panel);
         }
-        else if(e.getSource() == exitGame) {
-			// JPanel panel = new ReadFuturePanel(deck);
-			// displayNewPanel(panel);
-		} else {
+        else {
             JPanel panel = new WelcomePanel();
             displayNewPanel(panel);
         }

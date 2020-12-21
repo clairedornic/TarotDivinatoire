@@ -15,20 +15,17 @@ public class DisplayImage extends JPanel {
     private BufferedImage img;
 
     public DisplayImage(String pathImg, String pathOutputImg) {
-        this.setPreferredSize(new Dimension(150, 200));
+        this.setPreferredSize(new Dimension(195, 245));
         try {
 
-            int scaledWidth = 90;
-            int scaledHeight = 145;
+            int scaledWidth = 140;
+            int scaledHeight = 225;
             // reads input image
             img = ImageIO.read(new File(pathImg));
 
-            System.out.println(pathOutputImg);
             // creates output image
             BufferedImage outputImage = new BufferedImage(scaledWidth,
             scaledHeight, img.getType());
-
-            System.out.println( img.getType());
 
             // scales the input image to the output image
             Graphics2D g2d = outputImage.createGraphics();
@@ -38,8 +35,7 @@ public class DisplayImage extends JPanel {
             // extracts extension of output file
             String formatName = pathOutputImg.substring(pathOutputImg
                     .lastIndexOf(".") + 1);
-
-            System.out.println(formatName);        
+     
             // writes to output file
             ImageIO.write(outputImage, formatName, new File(pathOutputImg));
             img = ImageIO.read(new File(pathOutputImg));

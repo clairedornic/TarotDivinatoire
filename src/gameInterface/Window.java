@@ -16,7 +16,7 @@ public class Window extends JFrame {
     }
 
     private void windowProperties() {
-        this.setPreferredSize(new Dimension(1300, 700));
+        this.setPreferredSize(new Dimension(1100, 700));
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // this.setLocationRelativeTo(null); 
@@ -31,8 +31,4 @@ public class Window extends JFrame {
         pack();
         setVisible(true);
     }
-
-    public java.awt.Container getCurrentContainer() {
-        return this.getContentPane();
-      }
 }
