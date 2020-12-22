@@ -154,11 +154,8 @@ public class SearchOrDeleteCardPanel extends JPanel implements ActionListener {
                 searchOk.setText("Card deleted");
             } catch (Exception x) {
                 System.out.println(x);
-            }
-            
-
+            }   
         }
-
     }
 
     public void displayMatchedCardImg(Card card) { 

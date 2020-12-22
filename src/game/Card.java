@@ -49,17 +49,33 @@ public class Card implements Serializable {
         return this.id = aCard.id;
     }
 
-    public int getIdCard() {
-        return id;
-    }
-
+    public void setCardName(String name) {
+        this.name = name;
+   }
+    
     public String getNameCard() {
         return name;
     }
 
+    public void setCardId(int id) {
+        this.id = id;
+   }
+
+    public int getIdCard() {
+        return id;
+    }
+
+    public void setCardDesc(String desc) {
+        this.desc = desc;
+   }
+
     public String getDescCard() {
         return desc;
     }
+
+    public void setCardPathImg(String imgPath) {
+        this.imagePath = imgPath;
+   }
 
     public String getImgCard() {
         return imagePath;

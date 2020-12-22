@@ -44,5 +44,4 @@ public class addClassicCardsPanel extends JPanel {
             this.add(noEmpty);
         }
     }
-
 }

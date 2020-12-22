@@ -60,8 +60,6 @@ public class Menu extends JMenuBar implements ActionListener {
         this.add(deleteCard);
     }
 
-
-
     @Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == home) {
@@ -82,7 +80,7 @@ public class Menu extends JMenuBar implements ActionListener {
 		}
 		else if(e.getSource() == modifyCard) {
 			
-			JPanel panel = new ModifyCard();
+			JPanel panel = new ModifyCard(deckUser);
 			displayNewPanel(panel);
 		}
 		else if(e.getSource() == searchCard) {

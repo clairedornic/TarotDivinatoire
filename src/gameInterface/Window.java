@@ -19,7 +19,6 @@ public class Window extends JFrame {
         this.setPreferredSize(new Dimension(1100, 700));
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // this.setLocationRelativeTo(null); 
         this.setAlwaysOnTop(true);
     }
 

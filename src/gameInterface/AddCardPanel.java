@@ -14,6 +14,7 @@ import game.Deck;
 public class AddCardPanel extends JPanel implements ActionListener{
 
     private static final long serialVersionUID = 11L;
+    JLabel addCardText;
     JButton save; 
     JTextField name;
     JLabel nameLabel;
@@ -28,6 +29,7 @@ public class AddCardPanel extends JPanel implements ActionListener{
     Deck userDeck;
     JLabel addedCard;
     String pathImgchoix;
+    Card newCard;
 
 	public AddCardPanel(Deck deckUser) {
         panelElements();
@@ -38,6 +40,8 @@ public class AddCardPanel extends JPanel implements ActionListener{
     }
 
     private void panelElements() {
+
+        addCardText = new JLabel("Add here the informations of your new card :");
 
         nameLabel = new JLabel("Name");
         name = new JTextField(5);
@@ -60,6 +64,7 @@ public class AddCardPanel extends JPanel implements ActionListener{
 
         addedCard = new JLabel("");
 
+        this.add(addCardText);
         this.add(nameLabel);
         this.add(name);
         this.add(idLabel);
@@ -76,22 +81,32 @@ public class AddCardPanel extends JPanel implements ActionListener{
 
     @Override
 	public void actionPerformed(ActionEvent e) {
+        int idCardInt = 0;
+
         if(e.getSource() == save) {
             String nameCard = name.getText(); 
             String idCard = id.getText();
-            int idCardInt = Integer.parseInt(idCard);  
+
+            if(idCard.length() != 0) {
+                idCardInt = Integer.parseInt(idCard);  
+            }
+            
             String descCard = desc.getText();   
-            Card newCard = new Card(nameCard, idCardInt, descCard, pathImgchoix);
-    
-            try {
-                userDeck.addCardToDeck(newCard);
-                addedCard.setText("Card has been added to the deck!");
-              } catch (Exception ex) {
-                System.out.println(ex);
+
+            if(nameCard.length() == 0 || idCard.length() == 0 || descCard.length() == 0 || pathImgchoix.length() == 0) {
+                addCardText.setText("You have to insert all the informations to save your new card.");
+            }else{
+                newCard = new Card(nameCard, idCardInt, descCard, pathImgchoix);
+                try {
+                    userDeck.addCardToDeck(newCard);
+                    addedCard.setText("Card has been added to the deck!");
+                  } catch (Exception ex) {
+                    System.out.println(ex);
+                }
             }
 
         } else if (e.getSource() == img){
-            System.out.println("YES");
+
             JFileChooser choice = new JFileChooser();
             choice.setFileSelectionMode(JFileChooser.FILES_ONLY);
             choice.setMultiSelectionEnabled(false);
@@ -105,12 +120,12 @@ public class AddCardPanel extends JPanel implements ActionListener{
             JDialog dialog = new JDialog();  
             int feedback = choice.showOpenDialog(this);
             if(feedback == JFileChooser.APPROVE_OPTION){
-                 // nom du fichier  choisi 
+                 // name chosen file
                 imgLabel2.setText(choice.getSelectedFile().getName());
                 // absolute path of the chosen file
                 pathImgchoix = choice.getSelectedFile().getAbsolutePath();
+    
             }else {
-                System.out.println("NOP");
             } 
         }
     }
