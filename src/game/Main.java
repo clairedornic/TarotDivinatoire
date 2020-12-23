@@ -8,12 +8,14 @@ public class Main {
 
   public static void main(String[] args) throws Exception {
 
+    //Create the window to start the game
     game = new Window();
     game.validate();
     game.setVisible(true);
 
 
     //Deserialisation
+
     // File file = new File("DeckTest");
     // if (file.length() == 0) {
     // } else {
@@ -31,7 +33,9 @@ public class Main {
     //   } catch (IOException | ClassNotFoundException e) {
     //   }
     // } 
+
     //Serialisation 
+    
     // try {
     //   FileOutputStream fileOutputStream = new FileOutputStream("DeckTest");
     //   ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);

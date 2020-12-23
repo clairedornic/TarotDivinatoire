@@ -22,6 +22,11 @@ public class WelcomePanel extends JPanel {
         this.setVisible(true);
     }
 
+     /** 
+	* Add components to the Main panel
+	*  
+    *
+	*/
     private void welcomeElements() {
         
         label = new JLabel("Welcome, let's play to Mystic Tarot");

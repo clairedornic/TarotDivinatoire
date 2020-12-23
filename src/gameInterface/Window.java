@@ -15,6 +15,11 @@ public class Window extends JFrame {
         windowComponents();
     }
 
+    /** 
+	* Set the properties of the window
+	*  
+    *
+	*/
     private void windowProperties() {
         this.setPreferredSize(new Dimension(1100, 700));
         this.setResizable(false);
@@ -22,6 +27,11 @@ public class Window extends JFrame {
         this.setAlwaysOnTop(true);
     }
 
+    /** 
+	* Add components to the window
+	*  
+    *
+	*/
     private void windowComponents() {
         welcome = new WelcomePanel();
         this.add(welcome);

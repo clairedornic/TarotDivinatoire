@@ -33,6 +33,12 @@ public class addClassicCardsPanel extends JPanel {
           panelElements();
     }
 
+    /** 
+    * 
+	* Create and add components to the main Panel
+    *
+	*/
+ 
     private void panelElements() {
         JLabel empty;
         JLabel noEmpty;

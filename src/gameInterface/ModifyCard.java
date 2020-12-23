@@ -195,7 +195,13 @@ public class ModifyCard extends JPanel implements ActionListener {
         mainPanel.add(modifyCard);
         this.add(mainPanel);
     }
-
+   
+    /** 
+	*  Clicking on the buttons allows you to search for a card and then retrieve the information to modify in it.
+	*  
+    * @param e 
+    *
+	*/
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == search) {
@@ -281,6 +287,12 @@ public class ModifyCard extends JPanel implements ActionListener {
         }
     }
     
+    /** 
+	* Retrieve the image path then call the function to display the image and finally add the image to the selected card
+	*  
+    * @param card       
+    *
+	*/
     public void displayMatchedCardImg(Card card) { 
         String imgPath = card.getImgCard();
         String pathOutputImg = "src\\img\\" + card.getNameCard() + ".jpg";

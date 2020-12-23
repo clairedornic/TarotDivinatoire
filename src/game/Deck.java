@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//import sun.security.util.Length;
-
 public class Deck implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -38,17 +36,25 @@ public class Deck implements Serializable {
 
     
 	 /** 
-	  * Permet de comparer la carte courante à celle passé en paramètre
-	  * Les deux premières comparaisons servent à gérer le cas de "l'As" 
+	  * Create a card with all the informations  
 	  *  
-	  * @return      int
-	  * @param       autreCarte
+    * @param name     Name of the card
+    * @param id       Id of the card
+    * @param desc     Description of the image
+    * @param imgPath  Path to the image of the card
 	  *
 	  */
     public void addCompleteCardToDeck(String name, int id, String desc, String imgPath) {
         this.cardDeck.add(new Card(name, id, desc, imgPath)); 
     }
 
+    /** 
+	  * Delete the card corresponding to the ID passed in parameter
+	  *  
+    * @param id       Id of the card
+    * @return boolean 
+    *
+	  */
     public boolean deleteCard(int id) {
         for (Card card : cardDeck) {
             if (card.setIdCard(card) == id) 
@@ -57,6 +63,12 @@ public class Deck implements Serializable {
         return false;
     }
 
+    /** 
+	  * Search a card by ID in the deck and return it
+	  *  
+    * @return Card 
+    *
+	  */
     public Card searchById() {
         boolean idValid = false;
         Card matchedCard = null;
@@ -85,6 +97,12 @@ public class Deck implements Serializable {
           return matchedCard;
     }
 
+    /** 
+	  * Search a card by Name in the deck and return it
+	  *  
+    * @return Card 
+    *
+	  */
     public Card searchByName() {
         boolean nameValid = false;
         Card matchedCard = null;
@@ -115,6 +133,12 @@ public class Deck implements Serializable {
           return matchedCard;
     }
 
+    /** 
+	  * Check if the current deck is empty 
+	  *  
+    * @return boolean 
+    *
+	  */
     public boolean isEmpty() {
 
       if(this.cardDeck.size() > 0) {
@@ -124,10 +148,21 @@ public class Deck implements Serializable {
       }
     }
 
+    /** 
+	  * Return the current ArrayList of Card
+	  *  
+    * @return ArrayList<Card> 
+    *
+	  */
     public ArrayList<Card> getDeckArrayList() {
       return cardDeck;
     }
     
+    /** 
+	  *  
+    * @return String 
+    *
+	  */
     @Override 
          public String toString()
          {

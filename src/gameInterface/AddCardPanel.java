@@ -39,8 +39,13 @@ public class AddCardPanel extends JPanel implements ActionListener{
         this.userDeck = deckUser;
     }
 
+    
+    /** 
+    * 
+	* Create and add components to the main Panel
+    *
+	*/
     private void panelElements() {
-
         addCardText = new JLabel("Add here the informations of your new card :");
 
         nameLabel = new JLabel("Name");
@@ -79,6 +84,12 @@ public class AddCardPanel extends JPanel implements ActionListener{
 
     }
 
+    /** 
+	* Clicking on the "save" button allows you to save the card in the deck and the image button allows you to search for an image in your documents
+	*  
+    * @param e       
+    *
+	*/
     @Override
 	public void actionPerformed(ActionEvent e) {
         int idCardInt = 0;

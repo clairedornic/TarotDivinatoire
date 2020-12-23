@@ -1,12 +1,6 @@
 package game;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.Scanner;
-
-import javax.imageio.ImageIO;
 
 public class Card implements Serializable {
 
@@ -45,79 +39,102 @@ public class Card implements Serializable {
         this.imagePath = imgPath;
     }
 
+    /** 
+	* Replace the current ID by the ID of the card passed in the parameter
+	*  
+    * @param aCard       
+    * @return int 
+    *
+	*/
     public int setIdCard(Card aCard) {
         return this.id = aCard.id;
     }
 
+    /** 
+	* Replace the current name by the name passed in the parameter
+	*  
+    * @param name       
+    *
+	*/
     public void setCardName(String name) {
         this.name = name;
-   }
-    
+    }
+
+    /** 
+	* Get the current card's name 
+	*  
+    * @return String       
+    *
+	*/
     public String getNameCard() {
         return name;
     }
 
+    /** 
+	* Replace the current id by the id passed in the parameter
+	*  
+    * @param id       
+    *
+	*/
     public void setCardId(int id) {
         this.id = id;
-   }
+    }
 
+    /** 
+	* Get the current card's ID 
+	*  
+    * @return int       
+    *
+	*/
     public int getIdCard() {
         return id;
     }
 
+    /** 
+	* Replace the current description by the description passed in the parameter
+	*  
+    * @param desc       
+    *
+	*/
     public void setCardDesc(String desc) {
         this.desc = desc;
-   }
+     }
 
+    /** 
+	* Get the current card's description 
+	*  
+    * @return String       
+    *
+	*/
     public String getDescCard() {
         return desc;
     }
 
+    /** 
+	* Replace the current path to image by the path to image passed in the parameter
+	*  
+    * @param name       
+    *
+	*/
     public void setCardPathImg(String imgPath) {
         this.imagePath = imgPath;
-   }
+    }
 
+    /** 
+	* Get the current card's image path 
+	*  
+    * @return String       
+    *
+	*/
     public String getImgCard() {
         return imagePath;
     }
 
-    public void changeName(String newName) {
-        this.name = newName;
-    }
-
-    public void changeId(int id) {
-        this.id = id;
-    }
-
-    public void changeDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public void addImg() {
-        boolean errorImg = false;
-        String pathImg ="";
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            System.out.println("Insert the path of your image");
-            pathImg = scanner.next();
-            try {
-                BufferedImage myPicture = ImageIO.read(new File(pathImg));
-                break;
-            } catch (IOException e) {
-                e.printStackTrace();
-                errorImg = true;
-                continue;
-            }
-        }
-        if(imagePath.length()!=0) {
-            imagePath = "";
-            this.imagePath = pathImg;
-        } else {
-            this.imagePath = pathImg;
-        }
-        
-    }
-
+    /** 
+	*  
+    * @return String       
+    *
+	*/
     @Override
     public String toString() {
         return "The " + this.name + " " + this.id + " has as description " + this.desc + " " + this.imagePath;

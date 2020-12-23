@@ -34,6 +34,10 @@ public class Menu extends JMenuBar implements ActionListener {
         this.setVisible(true);
     }
 
+    /** 
+	* Creation of the menu 
+	*  
+	*/
     private void menuElements() {
         home = new JMenuItem("Back to home page");
         addClassicCards = new JMenuItem("Add classic cards");
@@ -60,6 +64,12 @@ public class Menu extends JMenuBar implements ActionListener {
         this.add(deleteCard);
     }
 
+
+    /** 
+    * The event displays a new panel according to the button clicked
+    *
+    * @param e    
+	*/
     @Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == home) {
@@ -101,6 +111,12 @@ public class Menu extends JMenuBar implements ActionListener {
         }
     }
     
+    /** 
+	* Simulation of a window refresh to display the new panel
+	*  
+    * @param panel       
+    *
+	*/
     private void displayNewPanel(JPanel panel) {
         Main.game.getContentPane().removeAll();
 	    Main.game.getContentPane().add(panel);

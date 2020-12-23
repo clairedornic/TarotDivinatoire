@@ -44,6 +44,11 @@ public class DisplayImage extends JPanel {
             e.printStackTrace();
         }
     }
+
+    /** 
+ 	* Create new image
+    * @param g       
+	*/
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(img, 0, 0, null);
