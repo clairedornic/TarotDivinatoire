@@ -36,7 +36,7 @@ public class AddClassicCardsPanel extends JPanel {
                             "The first time anyone has their first tarot reading they are considered to embody The Fool. Don’t laugh. The Fool is the wisest one, who knows everything. It symbolizes the eternal soul and is the symbol of enlightenment. The Fool is the first and last trump in the deck. It symbolizes a brand new cycle, trust, innocence, the inner child." };
     final String[] pathsImg = { "src\\img\\1-bateleur.jpg", "src\\img\\2-papesse.jpg", "src\\img\\3-imperatrice.jpg", "src\\img\\4-empereur.jpg", "src\\img\\5-pape.jpg", "src\\img\\6-amoureux.jpg", "src\\img\\7-chariot.jpg", "src\\img\\8-justice.jpg", "src\\img\\9-hermite.jpg",
         "src\\img\\10-roue-fortune.jpg", "src\\img\\11-force.jpg", "src\\img\\12-pendu.jpg", "src\\img\\13-mort.jpg", "src\\img\\14-temperance.jpg", "src\\img\\15-diable.jpg", "src\\img\\16-maison-dieu.jpg", "src\\img\\17-etoile.jpg", "src\\img\\18-lune.jpg", "src\\img\\19-soleil.jpg", "src\\img\\20-jugement.jpg",
-        "src\\img\\21-monde.jpg", "src\\img\\22-mat.jpg" };
+        "src\\img\\21-monde.jpg", "src\\img\\22-mat.jpg" }; 
     JLabel test;
     Deck userDeck;
     
