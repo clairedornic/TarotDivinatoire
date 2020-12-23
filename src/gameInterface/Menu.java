@@ -77,7 +77,7 @@ public class Menu extends JMenuBar implements ActionListener {
 			displayNewPanel(panel);
         } 
         else if(e.getSource() == addClassicCards) {
-			JPanel panel = new addClassicCardsPanel(deckUser);
+			JPanel panel = new AddClassicCardsPanel(deckUser);
 			displayNewPanel(panel);
 		}
         else if(e.getSource() == addCard) {
