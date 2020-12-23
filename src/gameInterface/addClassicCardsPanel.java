@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 
 import game.Deck;
 
-public class addClassicCardsPanel extends JPanel {
+public class AddClassicCardsPanel extends JPanel {
 
     private static final long serialVersionUID = 11L;
     final String[] names = { "Bateleur", "Papesse", "Impératrice", "Empereur", "Pape", "Amoureux", "Chariot", "Justice",
@@ -21,7 +21,7 @@ public class addClassicCardsPanel extends JPanel {
     JLabel test;
     Deck userDeck;
     
-    public addClassicCardsPanel(Deck deckUser) {
+    public AddClassicCardsPanel(Deck deckUser) {
         this.userDeck = deckUser;
         for (int n = 0; n < names.length; n++) {
             String name = names[n];
